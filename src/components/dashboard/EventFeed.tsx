@@ -51,7 +51,7 @@ export function EventFeed({ events, maxVisible = 50 }: Props) {
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.15 }}
-              className="flex items-start gap-2.5 py-1.5 border-b border-white/4"
+              className="flex items-start gap-2.5 py-1.5 border-b border-slate-100"
             >
               <span
                 className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${style.dot}`}
@@ -65,7 +65,7 @@ export function EventFeed({ events, maxVisible = 50 }: Props) {
                   {event.type === "state_change" &&
                     event.fromState &&
                     event.toState && (
-                      <span className="text-xs text-zinc-600">
+                      <span className="text-xs text-slate-400">
                         <span className={STATE_COLOR[event.fromState]}>
                           {event.fromState}
                         </span>
@@ -76,7 +76,7 @@ export function EventFeed({ events, maxVisible = 50 }: Props) {
                       </span>
                     )}
                   {event.durationMs != null && (
-                    <span className="text-xs text-zinc-600 font-mono">
+                    <span className="text-xs text-slate-400 font-mono">
                       {event.durationMs.toFixed(0)}ms
                     </span>
                   )}
@@ -87,7 +87,7 @@ export function EventFeed({ events, maxVisible = 50 }: Props) {
                   </p>
                 )}
               </div>
-              <span className="text-xs text-zinc-600 font-mono flex-shrink-0">
+              <span className="text-xs text-slate-400 font-mono flex-shrink-0">
                 {new Date(event.timestamp).toLocaleTimeString([], {
                   hour: "2-digit",
                   minute: "2-digit",
@@ -99,7 +99,7 @@ export function EventFeed({ events, maxVisible = 50 }: Props) {
         })}
       </AnimatePresence>
       {visible.length === 0 && (
-        <p className="text-xs text-zinc-600 py-4 text-center">
+        <p className="text-xs text-slate-400 py-4 text-center">
           No events yet — start some traffic
         </p>
       )}

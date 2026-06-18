@@ -46,7 +46,7 @@ const PRESETS = [
   {
     id: "spike_and_recover",
     label: "Spike & Recover",
-    color: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+    color: "bg-blue-500/20 text-white/50 border-blue-500/30",
     desc: "65% errors for 20s then 0%",
   },
   {
@@ -58,7 +58,7 @@ const PRESETS = [
   {
     id: "reset_all",
     label: "Reset All",
-    color: "bg-zinc-700/40  border-zinc-600",
+    color: "bg-slate-100 text-slate-700 border-slate-300",
     desc: "Restore all services to normal",
   },
 ] as const;
@@ -145,24 +145,24 @@ export default function PlaygroundPage() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
-      <header className="border-b border-white/8 px-6 py-4">
+    <div className="min-h-screen bg-white text-slate-900">
+      <header className="bg-black px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link
               href="/"
-              className=" hover:text-white text-sm transition-colors"
+              className="text-white/80 hover:text-white text-sm transition-colors"
             >
               ← Dashboard
             </Link>
-            <span className="text-zinc-700">/</span>
-            <h1 className="text-sm font-semibold">Playground</h1>
+            <span className="text-white/50">/</span>
+            <h1 className="text-sm font-semibold text-white">Playground</h1>
           </div>
           <div className="flex items-center gap-1.5">
             <span
-              className={`w-1.5 h-1.5 rounded-full ${connected ? "bg-emerald-500" : "bg-zinc-600"}`}
+              className={`w-1.5 h-1.5 rounded-full ${connected ? "bg-emerald-400" : "bg-white/40"}`}
             />
-            <span className="text-xs ">
+            <span className="text-xs text-white/80">
               {connected ? "Live" : "Connecting…"}
             </span>
           </div>
@@ -175,7 +175,7 @@ export default function PlaygroundPage() {
           <div className="xl:col-span-2 space-y-6">
             {/* Scenario Presets */}
             <section>
-              <h2 className="text-sm font-semibold text-zinc-300 mb-3">
+              <h2 className="text-sm font-semibold text-slate-700 mb-3">
                 Scenario Presets
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -207,11 +207,11 @@ export default function PlaygroundPage() {
               </div>
             </section>
 
-            <Separator className="bg-white/8" />
+            <Separator className="bg-slate-200" />
 
             {/* Per-service controls */}
             <section>
-              <h2 className="text-sm font-semibold text-zinc-300 mb-3">
+              <h2 className="text-sm font-semibold text-slate-700 mb-3">
                 Service Controls
               </h2>
               <div className="space-y-4">
@@ -230,7 +230,7 @@ export default function PlaygroundPage() {
                   return (
                     <Card
                       key={serviceName}
-                      className="bg-zinc-900/60 border-white/8"
+                      className="bg-white border-slate-200"
                     >
                       <CardHeader className="pb-2">
                         <div className="flex items-center justify-between">
@@ -297,7 +297,7 @@ export default function PlaygroundPage() {
                             <label className="text-xs  block mb-1.5">
                               Error Rate:{" "}
                               <span
-                                className={`font-mono font-bold ${(profile?.errorRate ?? 0) >= 50 ? "text-red-400" : "text-white"}`}
+                                className={`font-mono font-bold ${(profile?.errorRate ?? 0) >= 50 ? "text-red-500" : "text-slate-900"}`}
                               >
                                 {profile?.errorRate ?? 0}%
                               </span>
@@ -319,7 +319,7 @@ export default function PlaygroundPage() {
                             <label className="text-xs  block mb-1.5">
                               Latency:{" "}
                               <span
-                                className={`font-mono font-bold ${(profile?.baseLatencyMs ?? 100) >= 2000 ? "text-amber-400" : "text-white"}`}
+                                className={`font-mono font-bold ${(profile?.baseLatencyMs ?? 100) >= 2000 ? "text-amber-500" : "text-slate-900"}`}
                               >
                                 {profile?.baseLatencyMs ?? 100}ms
                               </span>
@@ -348,7 +348,7 @@ export default function PlaygroundPage() {
 
           {/* Right column: live circuit states + event feed */}
           <div className="space-y-4">
-            <h2 className="text-sm font-semibold text-zinc-300">
+            <h2 className="text-sm font-semibold text-slate-700">
               Circuit States
             </h2>
             <div className="space-y-3">
@@ -356,17 +356,17 @@ export default function PlaygroundPage() {
                 <CircuitCard key={circuit.circuitId} circuit={circuit} />
               ))}
               {circuitList.length === 0 && (
-                <p className="text-xs text-zinc-600">Connecting…</p>
+                <p className="text-xs text-slate-400">Connecting…</p>
               )}
             </div>
 
-            <Separator className="bg-white/8" />
+            <Separator className="bg-slate-200" />
 
             <div>
-              <h2 className="text-sm font-semibold text-zinc-300 mb-2">
+              <h2 className="text-sm font-semibold text-slate-700 mb-2">
                 Live Events
               </h2>
-              <div className="bg-zinc-900/50 border border-white/8 rounded-xl p-3">
+              <div className="bg-slate-50 border border-slate-200 rounded-xl p-3">
                 <EventFeed events={events} maxVisible={30} />
               </div>
             </div>

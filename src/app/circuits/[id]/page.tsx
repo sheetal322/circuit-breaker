@@ -149,17 +149,17 @@ export default function CircuitDetailPage({
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-zinc-950 text-white flex items-center justify-center">
-        <span className=" text-sm">Loading circuit…</span>
+      <div className="min-h-screen bg-white text-slate-900 flex items-center justify-center">
+        <span className="text-sm text-slate-500">Loading circuit…</span>
       </div>
     );
   }
 
   if (!detail && !liveCircuit) {
     return (
-      <div className="min-h-screen bg-zinc-950 text-white flex flex-col items-center justify-center gap-4">
+      <div className="min-h-screen bg-white text-slate-900 flex flex-col items-center justify-center gap-4">
         <p className="">Circuit not found</p>
-        <Link href="/" className="text-sm text-blue-400 hover:underline">
+        <Link href="/" className="text-sm text-slate-500 hover:underline">
           ← Back to Dashboard
         </Link>
       </div>
@@ -167,18 +167,18 @@ export default function CircuitDetailPage({
   }
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
-      <header className="border-b border-white/8 px-6 py-4">
+    <div className="min-h-screen bg-white text-slate-900">
+      <header className="bg-black px-6 py-4">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link
               href="/"
-              className=" hover:text-[cadetblue] text-sm transition-colors"
+              className="text-white/80 hover:text-white text-sm transition-colors"
             >
               ← Dashboard
             </Link>
-            <span className="text-zinc-700">/</span>
-            <h1 className="font-semibold">{config?.name ?? id}</h1>
+            <span className="text-white/50">/</span>
+            <h1 className="font-semibold text-white">{config?.name ?? id}</h1>
           </div>
           <Badge
             variant="outline"
@@ -211,11 +211,11 @@ export default function CircuitDetailPage({
                 red: metrics.notPermittedCalls > 0,
               },
             ].map(({ label, value, red }) => (
-              <Card key={label} className="bg-zinc-900/60 border-white/8">
+              <Card key={label} className="bg-white border-slate-200">
                 <CardContent className="pt-4 pb-3">
                   <p className="font-semibold mb-1">{label}</p>
                   <p
-                    className={`text-2xl font-bold font-mono ${red ? "text-red-400" : "text-white"}`}
+                    className={`text-2xl font-bold font-mono ${red ? "text-red-500" : "text-slate-900"}`}
                   >
                     {value}
                   </p>
@@ -229,35 +229,35 @@ export default function CircuitDetailPage({
           {/* Left column */}
           <div className="lg:col-span-2 space-y-6">
             <Tabs defaultValue="metrics">
-              <TabsList className="bg-zinc-900 border border-white/8">
+              <TabsList className="bg-slate-100 border border-slate-200">
                 <TabsTrigger
                   value="metrics"
-                  className="text-xs text-white/50 hover:text-[cadetblue] data-active:text-zinc-900"
+                  className="text-xs text-slate-500 hover:text-black data-active:text-slate-900"
                 >
                   Metrics
                 </TabsTrigger>
                 <TabsTrigger
                   value="window"
-                  className="text-xs text-white/50 hover:text-[cadetblue] data-active:text-zinc-900"
+                  className="text-xs text-slate-500 hover:text-black data-active:text-slate-900"
                 >
                   Sliding Window
                 </TabsTrigger>
                 <TabsTrigger
                   value="events"
-                  className="text-xs text-white/50 hover:text-[cadetblue] data-active:text-zinc-900"
+                  className="text-xs text-slate-500 hover:text-black data-active:text-slate-900"
                 >
                   Event Log
                 </TabsTrigger>
                 <TabsTrigger
                   value="config"
-                  className="text-xs text-white/50 hover:text-[cadetblue] data-active:text-zinc-900"
+                  className="text-xs text-slate-500 hover:text-black data-active:text-slate-900"
                 >
                   Config
                 </TabsTrigger>
               </TabsList>
 
               <TabsContent value="metrics">
-                <Card className="bg-zinc-900/60 border-white/8 mt-3">
+                <Card className="bg-white border-slate-200 mt-3">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm">Last 5 minutes</CardTitle>
                   </CardHeader>
@@ -268,7 +268,7 @@ export default function CircuitDetailPage({
               </TabsContent>
 
               <TabsContent value="window">
-                <Card className="bg-zinc-900/60 border-white/8 mt-3">
+                <Card className="bg-white border-slate-200 mt-3">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm">
                       Sliding Window ({detail?.slidingWindow?.length ?? 0} /{" "}
@@ -285,7 +285,7 @@ export default function CircuitDetailPage({
               </TabsContent>
 
               <TabsContent value="events">
-                <Card className="bg-zinc-900/60 border-white/8 mt-3">
+                <Card className="bg-white border-slate-200 mt-3">
                   <CardContent className="pt-4">
                     <EventFeed
                       events={[
@@ -299,7 +299,7 @@ export default function CircuitDetailPage({
 
               <TabsContent value="config">
                 {config && (
-                  <Card className="bg-zinc-900/60 border-white/8 mt-3">
+                  <Card className="bg-white border-slate-200 mt-3">
                     <CardHeader className="pb-2">
                       <div className="flex items-center justify-between">
                         <CardTitle className="text-sm">Configuration</CardTitle>
@@ -382,7 +382,7 @@ export default function CircuitDetailPage({
                                         : e.target.value,
                                   })
                                 }
-                                className="w-full px-3 py-2 bg-zinc-800 border border-white/10 rounded text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-blue-500/50"
+                                className="w-full px-3 py-2 bg-white border border-slate-300 rounded text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-black"
                               />
                             </div>
                           ))}
@@ -449,7 +449,7 @@ export default function CircuitDetailPage({
 
           {/* Right column: state machine */}
           <div className="space-y-4">
-            <Card className="bg-zinc-900/60 border-white/8">
+            <Card className="bg-white border-slate-200">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm">State Machine</CardTitle>
               </CardHeader>

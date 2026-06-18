@@ -41,7 +41,7 @@ export function CircuitCard({ circuit }: Props) {
 
   return (
     <Link href={`/circuits/${circuit.circuitId}`}>
-      <Card className="relative overflow-hidden cursor-pointer border border-white/10 bg-zinc-900/60 hover:border-white/20 transition-all duration-200 hover:shadow-lg hover:shadow-black/20 hover:-translate-y-0.5">
+      <Card className="relative overflow-hidden cursor-pointer border border-slate-200 bg-white hover:border-slate-300 transition-all duration-200 hover:shadow-md hover:shadow-slate-200 hover:-translate-y-0.5">
         {/* State glow strip */}
         <div
           className={`absolute top-0 left-0 right-0 h-0.5 ${cfg.bg} opacity-80`}
@@ -49,7 +49,7 @@ export function CircuitCard({ circuit }: Props) {
 
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
-            <CardTitle className="font-semibold text-white/90 truncate">
+            <CardTitle className="font-semibold text-slate-900 truncate">
               {circuit.circuitName}
             </CardTitle>
             <AnimatePresence mode="wait">
@@ -129,7 +129,7 @@ function Metric({
     <div>
       <p className="font-semibold mb-0.5">{label}</p>
       <p
-        className={`text-sm font-mono font-semibold ${highlight ? "text-red-400" : "text-white/80"}`}
+        className={`text-sm font-mono font-semibold ${highlight ? "text-red-500" : "text-slate-800"}`}
       >
         {value}
       </p>

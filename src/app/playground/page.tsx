@@ -32,25 +32,25 @@ const PRESETS = [
   {
     id: "cascade_failure",
     label: "Cascade Failure",
-    color: "bg-red-500/20 text-red-400 border-red-500/30",
+    color: "bg-red-500/20 text-red-700 border-red-500/30",
     desc: "80% errors on all services",
   },
   {
     id: "gradual_degradation",
     label: "Gradual Degradation",
-    color: "bg-amber-500/20 text-amber-400 border-amber-500/30",
+    color: "bg-amber-500/20 text-amber-700 border-amber-500/30",
     desc: "Error rate ramps 10% → 80%",
   },
   {
     id: "spike_and_recover",
     label: "Spike & Recover",
-    color: "bg-blue-500/20 text-white/50 border-blue-500/30",
+    color: "bg-blue-500/20 text-blue-700 border-blue-500/30",
     desc: "65% errors for 20s then 0%",
   },
   {
     id: "slow_burn",
     label: "Slow Burn",
-    color: "bg-purple-500/20 text-purple-400 border-purple-500/30",
+    color: "bg-purple-500/20 text-purple-700 border-purple-500/30",
     desc: "2.5s latency (slow calls)",
   },
   {

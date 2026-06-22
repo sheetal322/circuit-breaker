@@ -15,8 +15,6 @@ import { Separator } from "@/components/ui/separator";
 const sliderVal = (v: number | readonly number[]): number =>
   Array.isArray(v) ? (v as number[])[0] : (v as number);
 
-const SERVICES = ["payment", "user", "inventory", "notification", "order"];
-
 interface ServiceProfile {
   serviceName: string;
   errorRate: number;
@@ -67,12 +65,24 @@ export default function PlaygroundPage() {
   const { connected, circuits, events } = useCircuitEvents();
   const circuitList = Array.from(circuits.values());
 
+  const [services, setServices] = useState<string[]>([]);
   const [profiles, setProfiles] = useState<ServiceProfile[]>([]);
   const [traffic, setTraffic] = useState<TrafficSession[]>([]);
-  const [rps, setRps] = useState<Record<string, number>>(
-    Object.fromEntries(SERVICES.map((s) => [s, 10])),
-  );
+  const [rps, setRps] = useState<Record<string, number>>({});
   const [activePreset, setActivePreset] = useState<string | null>(null);
+
+  const fetchServices = useCallback(async () => {
+    const res = await fetch("/api/services");
+    if (res.ok) {
+      const fetchedServices = (await res.json()) as string[];
+      setServices(fetchedServices);
+      setRps((prev) =>
+        Object.fromEntries(
+          fetchedServices.map((s) => [s, prev?.[s] ?? 10])
+        )
+      );
+    }
+  }, []);
 
   const fetchProfiles = useCallback(async () => {
     const res = await fetch("/api/playground/inject");
@@ -85,6 +95,7 @@ export default function PlaygroundPage() {
   }, []);
 
   useEffect(() => {
+    fetchServices();
     fetchProfiles();
     fetchTraffic();
     const t = setInterval(() => {
@@ -92,7 +103,7 @@ export default function PlaygroundPage() {
       fetchTraffic();
     }, 3000);
     return () => clearInterval(t);
-  }, [fetchProfiles, fetchTraffic]);
+  }, [fetchServices, fetchProfiles, fetchTraffic]);
 
   const patchProfile = async (
     serviceName: string,
@@ -215,7 +226,7 @@ export default function PlaygroundPage() {
                 Service Controls
               </h2>
               <div className="space-y-4">
-                {SERVICES.map((serviceName) => {
+                {services.map((serviceName) => {
                   const profile = profiles.find(
                     (p) => p.serviceName === serviceName,
                   );
